@@ -1,4 +1,4 @@
-﻿namespace Walker.Data.Vector.Generic.Plane {
+﻿namespace Walker.Data.Geometry.Generic.Plane {
 	public struct Rectangle<T> {
 		public Vector2<T> left, right;
 

@@ -1,4 +1,4 @@
-﻿namespace Walker.Data.Vector.Generic.Space {
+﻿namespace Walker.Data.Geometry.Generic.Space {
 	public interface Solid<T> {
 
 		bool Contains(Vector3<T> vec);

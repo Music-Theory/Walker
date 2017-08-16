@@ -1,4 +1,4 @@
-﻿namespace Walker.Data.Vector.Generic.Space {
+﻿namespace Walker.Data.Geometry.Generic.Space {
 	public struct Prism<T> : Solid<T> {
 
 		public Vector3<T> left, right;

@@ -1,4 +1,4 @@
-﻿namespace Walker.Data.Vector.Generic.Space {
+﻿namespace Walker.Data.Geometry.Generic.Space {
 	using System;
 
 	public struct Line3<T> {

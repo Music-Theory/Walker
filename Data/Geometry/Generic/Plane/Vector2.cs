@@ -1,4 +1,4 @@
-﻿namespace Walker.Data.Vector.Generic.Plane {
+﻿namespace Walker.Data.Geometry.Generic.Plane {
 	using System;
 	using System.Runtime.InteropServices;
 

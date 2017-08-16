@@ -1,13 +1,15 @@
-﻿namespace Walker.Data.Vector.Speed.Space {
+﻿namespace Walker.Data.Geometry.Speed.Space {
 	using System;
-	using System.Security.Cryptography.X509Certificates;
+	using System.Diagnostics;
 	using Generic.Space;
 
 	public struct Vector3F {
 
+		public static readonly TraceSwitch GeoSwitch = new TraceSwitch("GeoSwitch_SpeedSpace", "TraceSwitch for Walker.Data.Geometry.Speed.Space");
+
 		const float Tolerance = 0.0001f;
 
-		float x, y, z;
+		public float x, y, z;
 
 		public float Length {
 			get => (float) Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2) + Math.Pow(z, 2));
@@ -146,6 +148,10 @@
 
 		public bool Equals(Vector3<float> other) {
 			return this == other;
+		}
+
+		public override string ToString() {
+			return "<" + x + ", " + y + ", " + z + ">";
 		}
 
 		public static bool operator ==(Vector3F a, Vector3F b) {

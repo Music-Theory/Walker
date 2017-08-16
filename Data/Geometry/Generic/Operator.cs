@@ -1,4 +1,4 @@
-﻿namespace Walker.Data.Vector.Generic {
+﻿namespace Walker.Data.Geometry.Generic {
 	using System;
 	using System.Linq.Expressions;
 

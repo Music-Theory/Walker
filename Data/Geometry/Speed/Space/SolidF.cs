@@ -11,6 +11,8 @@
 
 		List<Line3F> Edges { get; }
 
+		List<Vector3F> Vertices { get; }
+
 		Vector3F GetVert(int index);
 
 	}

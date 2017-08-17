@@ -9,6 +9,8 @@
 
 		public readonly FaceF[] faces;
 
+		public List<Vector3F> Vertices => verts.ToList();
+
 		public List<Line3F> Edges {
 			get {
 				throw new NotImplementedException();

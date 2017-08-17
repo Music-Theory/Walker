@@ -11,16 +11,16 @@
 	/// </summary>
 	public struct FaceF {
 
-		readonly int v1, v2, v3;
+		readonly int v0, v1, v2;
 
 		readonly SolidF solid;
 
 		public Vector3F this[int index] {
 			get {
 				switch (index) {
-					case 0: return solid.GetVert(v1);
-					case 1: return solid.GetVert(v2);
-					case 2: return solid.GetVert(v3);
+					case 0: return solid.GetVert(v0);
+					case 1: return solid.GetVert(v1);
+					case 2: return solid.GetVert(v2);
 					default: throw new ArgumentOutOfRangeException();
 				}
 			}
@@ -34,19 +34,19 @@
 			}
 		}
 
-		public FaceF(SolidF solid, int v1, int v2, int v3) {
+		public FaceF(SolidF solid, int v0, int v1, int v2) {
 			this.solid = solid;
+			this.v0 = v0;
 			this.v1 = v1;
 			this.v2 = v2;
-			this.v3 = v3;
 		}
 
 		public FaceF(SolidF solid, params int[] indices) {
 			if (indices.Length != 3) { throw new ArgumentException("Triangles must have 3 vertices"); }
 			this.solid = solid;
-			v1 = indices[0];
-			v2 = indices[1];
-			v3 = indices[2];
+			v0 = indices[0];
+			v1 = indices[1];
+			v2 = indices[2];
 		}
 
 		/// <summary>

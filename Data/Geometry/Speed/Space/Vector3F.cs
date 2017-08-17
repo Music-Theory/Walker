@@ -9,6 +9,8 @@
 
 		const float Tolerance = 0.0001f;
 
+		public static readonly Vector3F Default = new Vector3F(0, 0, 0);
+
 		public float x, y, z;
 
 		public float Length {

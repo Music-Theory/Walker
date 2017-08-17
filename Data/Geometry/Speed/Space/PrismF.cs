@@ -54,6 +54,16 @@
 			}
 		}
 
+		public List<Vector3F> Vertices {
+			get {
+				List<Vector3F> res = new List<Vector3F>();
+				for (int i = 0; i < 8; i++) {
+					res.Add(this[i]);
+				}
+				return res;
+			}
+		}
+
 		public Vector3F GetVert(int index) {
 			switch (index) {
 				case 0: return left;

@@ -3,6 +3,8 @@
 
 	public class Matrix2F {
 
+		// TODO - Get this as functional as Matrix3F
+
 		float[,] values;
 
 		public float this[int i, int j] {

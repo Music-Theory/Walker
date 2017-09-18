@@ -8,6 +8,9 @@
 
 	public struct Matrix3F {
 
+		// If you want to make the calculations lazy, use a bool[3,3]
+		// and stuff like HasChanged, RowChanged(int), ColumnChanged(int)
+
 		float[,] values;
 
 		public float this[int i, int j] {
@@ -132,12 +135,29 @@
 			}
 		}
 
+		public Matrix3F(Vector3F g1, Vector3F g2, Vector3F g3, bool columns = false) {
+			values = new float[3,3];
+			if (columns) {
+				C1 = g1;
+				C2 = g2;
+				C3 = g3;
+			} else {
+				R1 = g1;
+				R2 = g2;
+				R3 = g3;
+			}
+		}
+
+		public static Matrix3F operator -(Matrix3F a) {
+			return a * -1;
+		}
+
 		public static Matrix3F operator +(Matrix3F a, Matrix3F b) {
-			return new Matrix3F(new[] {
-				                                  (float[]) (a.R1 + b.R1),
-				                                  (float[]) (a.R2 + b.R2),
-				                                  (float[]) (a.R3 + b.R3)
-			                                  });
+			return new Matrix3F(a.R1 + b.R1, a.R2 + b.R2, a.R3 + b.R3);
+		}
+
+		public static Matrix3F operator -(Matrix3F a, Matrix3F b) {
+			return new Matrix3F(a.R1 - b.R1, a.R2 - b.R2, a.R3 - b.R3);
 		}
 
 		public static Matrix3F operator *(Matrix3F a, Matrix3F b) {
@@ -146,6 +166,26 @@
 				                           {a.R2.Dot(b.C1), a.R2.Dot(b.C2), a.R2.Dot(b.C3)},
 				                           {a.R3.Dot(b.C1), a.R3.Dot(b.C2), a.R3.Dot(b.C3)}
 			                           });
+		}
+
+		public static Vector3F operator *(Matrix3F a, Vector3F b) {
+			return new Vector3F(a.R1.Dot(b), a.R2.Dot(b), a.R3.Dot(b));
+		}
+
+		public static Vector3F operator *(Vector3F a, Matrix3F b) {
+			return new Vector3F(a.Dot(b.R1), a.Dot(b.R2), a.Dot(b.R3));
+		}
+
+		public static Matrix3F operator *(Matrix3F a, float b) {
+			return new Matrix3F(a.R1 * b, a.R2 * b, a.R3 * b);
+		}
+
+		public static Matrix3F operator *(float a, Matrix3F b) {
+			return new Matrix3F(b.R1 * a, b.R2 * a, b.R3 * a);
+		}
+
+		public static Matrix3F operator /(Matrix3F a, Matrix3F b) {
+			return a * b.Inverse;
 		}
 
 	}

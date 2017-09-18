@@ -7,7 +7,7 @@
 
 		public static readonly TraceSwitch GeoSwitch = new TraceSwitch("GeoSwitch_SpeedSpace", "TraceSwitch for Walker.Data.Geometry.Speed.Space");
 
-		const float Tolerance = 0.0001f;
+		public const float Tolerance = 0.0001f;
 
 		public static readonly Vector3F Default = new Vector3F(0, 0, 0);
 
@@ -182,6 +182,10 @@
 
 		public static implicit operator Vector3F(Vector3<float> vec) {
 			return new Vector3F(vec.X, vec.Y, vec.Z);
+		}
+
+		public static explicit operator float[](Vector3F vec) {
+			return new [] {vec.x, vec.y, vec.z};
 		}
 
 	}

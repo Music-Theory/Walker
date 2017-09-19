@@ -1,7 +1,7 @@
 ﻿namespace Walker.Data.Geometry.Speed.Plane {
 	using System;
 
-	public class Matrix2F {
+	public struct Matrix2F {
 
 		// TODO - Get this as functional as Matrix3F
 

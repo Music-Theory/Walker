@@ -1,6 +1,6 @@
 ﻿namespace Walker.Data.Geometry.Speed.Space {
 	using System;
-	using System.Diagnostics;
+	using System.Diagnostics.CodeAnalysis;
 	using Generic.Space;
 
 	public struct Vector3F {
@@ -39,6 +39,7 @@
 		/// </summary>
 		/// <param name="other">The right side of the function</param>
 		/// <returns>a X b</returns>
+		[SuppressMessage("ReSharper", "LocalVariableHidesMember")]
 		public Vector3F Cross(Vector3F other) {
 			float x = this.y * other.z - this.z * other.y;
 			float y = this.z * other.x - this.x * other.z;
@@ -131,6 +132,7 @@
 			return false;
 		}
 
+		[SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode")]
 		public override int GetHashCode() {
 			unchecked {
 				int hashCode = x.GetHashCode();
@@ -153,9 +155,9 @@
 		}
 
 		public static bool operator ==(Vector3F a, Vector3F b) {
-			return Math.Abs(a.x - b.x) < Tolerance
-			       && Math.Abs(a.y - b.y) < Tolerance
-			       && Math.Abs(a.z - b.z) < Tolerance;
+			return Math.Abs(a.x - b.x) < GeoMeta.Tolerance
+			       && Math.Abs(a.y - b.y) < GeoMeta.Tolerance
+			       && Math.Abs(a.z - b.z) < GeoMeta.Tolerance;
 		}
 
 		public static bool operator !=(Vector3F a, Vector3F b) {
@@ -163,9 +165,9 @@
 		}
 
 		public static bool operator ==(Vector3F a, Vector3<float> b) {
-			return Math.Abs(a.x - b.X) < Tolerance
-			       && Math.Abs(a.y - b.Y) < Tolerance
-			       && Math.Abs(a.z - b.Z) < Tolerance;
+			return Math.Abs(a.x - b.X) < GeoMeta.Tolerance
+			       && Math.Abs(a.y - b.Y) < GeoMeta.Tolerance
+			       && Math.Abs(a.z - b.Z) < GeoMeta.Tolerance;
 		}
 
 		public static bool operator !=(Vector3F a, Vector3<float> b) {

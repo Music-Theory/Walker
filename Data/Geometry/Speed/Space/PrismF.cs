@@ -1,7 +1,6 @@
 ﻿namespace Walker.Data.Geometry.Speed.Space {
 	using System;
 	using System.Collections.Generic;
-	using System.Net.Http.Headers;
 	using Generic.Space;
 
 	public struct PrismF : SolidF {

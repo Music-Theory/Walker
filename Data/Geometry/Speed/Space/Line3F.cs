@@ -1,16 +1,9 @@
 ﻿namespace Walker.Data.Geometry.Speed.Space {
 	using System;
 	using System.Collections.Generic;
-	using System.Data;
 	using System.Diagnostics;
-	using System.Runtime.CompilerServices;
-	using Generic.Space;
 
 	public struct Line3F {
-
-
-
-		const float FLOAT_TOLERANCE = 0.0001f;
 
 		public Vector3F o, d;
 
@@ -77,7 +70,7 @@
 		/// <param name="floatTol">Float tolerance, default = 0.0001f</param>
 		/// <returns>Location of intersection of this and the face</returns>
 		/// <exception cref="IntersectionException">Line doesn't intersect with plane</exception>
-		public Vector3F Intersection(FaceF face, float floatTol = FLOAT_TOLERANCE) {
+		public Vector3F Intersection(FaceF face, float floatTol = GeoMeta.Tolerance) {
 			Vector3F n = face.Normal;
 			if (Math.Abs(d.Dot(n)) < floatTol) { throw new IntersectionException("Does not intersect - Parallel"); }
 			Vector3F w = o - face[0];
@@ -101,7 +94,7 @@
 			List<Vector3F> res = new List<Vector3F>();
 			foreach (FaceF face in sol.Faces) {
 				try { res.Add(Intersection(face)); }
-				catch(IntersectionException) { Debug.WriteLineIf(Vector3F.GeoSwitch.Level >= TraceLevel.Verbose, "No intersection for " + this + " and " + face); }
+				catch(IntersectionException) { Debug.WriteLineIf(GeoMeta.GeoSwitch.Level >= TraceLevel.Verbose, "No intersection for " + this + " and " + face); }
 			}
 			return res;
 		}

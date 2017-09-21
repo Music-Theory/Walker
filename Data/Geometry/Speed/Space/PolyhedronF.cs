@@ -28,7 +28,7 @@
 			foreach (int[] inds in faceVertInds) {
 				faceList.AddRange(FaceF.FanTriangulation(this, inds));
 			}
-			this.faces = faceList.ToArray();
+			faces = faceList.ToArray();
 		}
 
 		public bool Contains(Vector3F vec) {

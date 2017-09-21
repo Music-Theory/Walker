@@ -1,6 +1,6 @@
 ﻿namespace Walker.Data.Geometry.Speed.Rotation {
 	using System;
-	using Generic.Space;
+	using System.Diagnostics.CodeAnalysis;
 	using Space;
 
 	public struct Vector4F {
@@ -163,6 +163,7 @@
 			return false;
 		}
 
+		[SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode")]
 		public override int GetHashCode() {
 			unchecked {
 				int hashCode = x.GetHashCode();

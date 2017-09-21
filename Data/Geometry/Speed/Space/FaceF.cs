@@ -1,8 +1,6 @@
 ﻿namespace Walker.Data.Geometry.Speed.Space {
 	using System;
-	using System.Collections;
 	using System.Collections.Generic;
-	using Generic.Space;
 
 	// Today's note: Colonel Zaxby forgot to give me my god damnb tater chips
 

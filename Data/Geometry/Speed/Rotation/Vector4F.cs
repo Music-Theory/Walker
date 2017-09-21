@@ -23,11 +23,19 @@
 		public Matrix4F QMatrix {
 			get {
 				if (Math.Abs(Length - 1) > GeoMeta.Tolerance) {
-					throw new NotImplementedException("Haven't written the code for rotation matrices for non-unit quaternions");
+					return new Matrix4F(new[,] {
+						                           {w * w + x * x - y * y - z * z, 2 * x * y - 2 * w * z, 2 * x * z + 2 * w * y, 0},
+						                           {2 * x * y + 2 * w * z, w * w - x * x + y * y - z * z, 2 * y * z + 2 * w * x, 0},
+						                           {2 * x * z - 2 * w * y, 2 * y * z - 2 * w * x, w * w - x * x - y * y + z * z, 0},
+						                           {0, 0, 0, 1}
+					                           });
 				}
-				return new Matrix4F(
-					1 - 2 * y * y - 2 * z * z, 2 * x * y - 2 * w * z,
-					);
+				return new Matrix4F(new[,] {
+					                           {1 - 2 * y * y - 2 * z * z, 2 * x * y - 2 * w * z, 2 * x * z + 2 * w * y, 0},
+					                           {2 * x * y + 2 * w * z, 1 - 2 * x * x - 2 * z * z, 2 * y * z + 2 * w * x, 0},
+					                           {2 * x * z - 2 * w * y, 2 * y * z - 2 * w * x, 1 - 2 * x * x - 2 * y * y, 0},
+					                           {0, 0, 0, 1}
+				                           });
 			}
 		}
 

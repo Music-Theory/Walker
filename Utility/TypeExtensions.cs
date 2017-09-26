@@ -12,5 +12,14 @@
 			return bType;
 		}
 
+		public static Type FindAncestor(this Type t, Predicate<Type> pred) {
+			Type bType = t;
+			while (bType.BaseType != null) {
+				bType = bType.BaseType;
+				if (pred(bType)) { return bType; }
+			}
+			return null;
+		}
+
 	}
 }

@@ -3,3 +3,6 @@
 *.*.iml
 
 obj/*
+
+WalkerTests/obj/*
+WalkerTests/bin/*

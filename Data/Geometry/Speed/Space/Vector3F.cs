@@ -117,6 +117,16 @@
 		}
 
 		/// <summary>
+		/// Operator / overload ; return vector of {x / {v[i}}
+		/// </summary>
+		/// <param name="v">Vector</param>
+		/// <param name="x">Scalar value</param>
+		/// <returns>v / x</returns>
+		public static Vector3F operator /(float x, Vector3F v) {
+			return new Vector3F(x / v.x, x / v.y, x / v.z);
+		}
+
+		/// <summary>
 		/// Operator / overload ; divide one vector by another
 		/// </summary>
 		/// <param name="a">First vector</param>

@@ -4,5 +4,5 @@
 
 obj/*
 
-WalkerTests/obj/*
-WalkerTests/bin/*
+*/obj/*
+*/bin/*

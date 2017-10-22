@@ -3,39 +3,26 @@
 	using System.Collections.Generic;
 	using System.Diagnostics;
 
-	public struct Line3F {
+	public struct EdgeF {
 
-		public Vector3F o, d;
+		public readonly int a, b;
+		public readonly SolidF solid;
 
-		/// <summary>
-		/// The end point of this line
-		/// </summary>
-		public Vector3F End {
-			get => o + d;
-			set => d = value - o;
+		public Vector3F A => solid[a];
+		public Vector3F B => solid[b];
+		public Vector3F Dir => B - A;
+
+		public EdgeF(SolidF s, int a, int b) {
+			this.a = a;
+			this.b = b;
+			this.solid = s;
+			int sCount = s.Vertices.Length;
+			if (a < 0 || b < 0 || a >= sCount || b >= sCount) { throw new IndexOutOfRangeException(); }
 		}
 
-		/// <summary>
-		/// Length of this line
-		/// </summary>
-		public float Length {
-			get => d.Length;
-			set => d.Length = value;
+		public static explicit operator Line3F(EdgeF e) {
+			return new Line3F(e.A, e.B);
 		}
-
-		/// <summary>
-		/// A line beginning at o and with unit d
-		/// </summary>
-		public Line3F Unit => new Line3F(o, d / d.Length);
-
-		public Line3F(Vector3F o, Vector3F d) {
-			this.o = o;
-			this.d = d;
-		}
-
-		public float Dot(Line3F other) => d.Dot(other.d);
-
-		public Vector3F Cross(Line3F other) => d.Cross(other.d);
 
 		public class IntersectionException : Exception {
 			public IntersectionException(string msg) : base(msg) { }
@@ -50,11 +37,11 @@
 		/// <exception cref="IntersectionException">Line doesn't intersect with plane</exception>
 		public Vector3F Intersection(FaceF face, float floatTol = GeoMeta.Tolerance) {
 			Vector3F n = face.Normal;
-			if (Math.Abs(d.Dot(n)) < floatTol) { throw new IntersectionException("Does not intersect - Parallel"); }
-			Vector3F w = o - face.A;
-			float s = (-n).Dot(w) / n.Dot(d);
+			if (Math.Abs(A.Dot(n)) < floatTol) { throw new IntersectionException("Does not intersect - Parallel"); }
+			Vector3F w = A - face.A;
+			float s = (-n).Dot(w) / n.Dot(Dir);
 			if (s < 0 || s > 1) { throw new IntersectionException("Does not intersect - Too short"); }
-			Vector3F point = s * d;
+			Vector3F point = s * Dir;
 			if (   (face.B - face.A).Cross(point - face.A).Dot(n) < 0
 			    || (face.C - face.B).Cross(point - face.B).Dot(n) < 0
 			    || (face.B - face.C).Cross(point - face.C).Dot(n) < 0) {
@@ -93,7 +80,8 @@
 		}
 
 		public override string ToString() {
-			return "{" + o + " + " + d + "}";
+			return "{" + A + " -> " + B + "}";
 		}
+
 	}
 }

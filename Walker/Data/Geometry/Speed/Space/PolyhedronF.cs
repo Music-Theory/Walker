@@ -5,30 +5,27 @@
 
 	public class PolyhedronF : SolidF {
 
-		public readonly Vector3F[] verts;
+		readonly Vector3F[] verts;
 
-		public readonly FaceF[] faces;
+		readonly EdgeF[] edges;
 
-		public List<Vector3F> Vertices => verts.ToList();
+		readonly FaceF[] faces;
 
-		public List<Line3F> Edges {
-			get {
-				throw new NotImplementedException();
-			}
+		public Vector3F[] Vertices => verts;
+
+		public EdgeF[] Edges => edges;
+
+		public FaceF[] Faces => faces;
+
+		public Vector3F this[int index] {
+			get => verts[index];
+			set => verts[index] = value;
 		}
 
-		public List<FaceF> Faces => faces.ToList();
-
-		public Vector3F this[int index] => GetVert(index);
-
-		public PolyhedronF(IEnumerable<Vector3F> verts, IEnumerable<int[]> faceVertInds) {
+		public PolyhedronF(IEnumerable<Vector3F> verts, IEnumerable<Tuple<int, int>> edges, IEnumerable<Tuple<int, int, int>> faces) {
 			this.verts = verts.ToArray();
-
-			List<FaceF> faceList = new List<FaceF>();
-			foreach (int[] inds in faceVertInds) {
-				faceList.AddRange(FaceF.FanTriangulation(this, inds));
-			}
-			faces = faceList.ToArray();
+			this.edges = edges.Select(e => new EdgeF(this, e.Item1, e.Item2)).ToArray();
+			this.faces = faces.Select(f => new FaceF(this, f.Item1, f.Item2, f.Item3)).ToArray();
 		}
 
 		public bool Contains(Vector3F vec) {
@@ -41,10 +38,6 @@
 				res.AddRange(edge.Intersections(sol));
 			}
 			return res;
-		}
-
-		public Vector3F GetVert(int index) {
-			return verts[index];
 		}
 	}
 }

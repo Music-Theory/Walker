@@ -3,17 +3,17 @@
 
 	public interface SolidF {
 
+		Vector3F this[int index] { get; set; }
+
 		bool Contains(Vector3F vec);
 
 		List<Vector3F> Intersections(SolidF sol);
 
-		List<FaceF> Faces { get; }
+		Vector3F[] Vertices { get; }
 
-		List<Line3F> Edges { get; }
+		EdgeF[] Edges { get; }
 
-		List<Vector3F> Vertices { get; }
-
-		Vector3F GetVert(int index);
+		FaceF[] Faces { get; }
 
 	}
 }

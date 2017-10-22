@@ -19,7 +19,7 @@
 
 		public static Vector3F ToVector3F(this string str, Vector3F def) {
 			if (str != null) {
-				str = str.Replace('<', '').Replace(' ', '').Replace('>', '');
+				str = str.Replace("<", "").Replace(" ", "").Replace(">", "");
 				string[] split = str.Split(',');
 				float x = float.Parse(split[0]);
 				float y = float.Parse(split[1]);

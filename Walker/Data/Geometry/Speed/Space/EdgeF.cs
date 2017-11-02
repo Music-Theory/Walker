@@ -79,6 +79,23 @@
 			return res;
 		}
 
+		public override bool Equals(object obj) {
+			switch (obj) {
+				case EdgeF e:
+					return A == e.A && B == e.B;
+				case Line3F l:
+					return A == l.o && B == l.End;
+				default:
+					return false;
+			}
+		}
+
+		public override int GetHashCode() {
+			unchecked {
+				return (A.GetHashCode() * 397) ^ B.GetHashCode();
+			}
+		}
+
 		public override string ToString() {
 			return "{" + A + " -> " + B + "}";
 		}

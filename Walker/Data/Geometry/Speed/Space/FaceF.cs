@@ -17,6 +17,8 @@ namespace Walker.Data.Geometry.Speed.Space {
 
 		public Vector3F Normal => A.Cross(B);
 
+		public EdgeF[] Edges => new[] {AB, BC, CA};
+
 		public FaceF(SolidF s, int a, int b, int c) {
 			this.solid = s;
 			this.a = a;
@@ -26,5 +28,17 @@ namespace Walker.Data.Geometry.Speed.Space {
 			if (a < 0 || b < 0 || c < 0 || a >= count || b >= count || c >= count) { throw new IndexOutOfRangeException(); }
 		}
 
+		public override bool Equals(object obj) {
+			return obj is FaceF f && A == f.A && B == f.B && C == f.C;
+		}
+
+		public override int GetHashCode() {
+			unchecked {
+				int hashCode = A.GetHashCode();
+				hashCode = (hashCode * 397) ^ B.GetHashCode();
+				hashCode = (hashCode * 397) ^ C.GetHashCode();
+				return hashCode;
+			}
+		}
 	}
 }

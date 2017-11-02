@@ -3,6 +3,12 @@
 	using System.Diagnostics.CodeAnalysis;
 	using Generic.Space;
 
+	/// <summary>
+	/// A vector in 3D space, defined with floats.
+	/// X increases rightward.
+	/// Y increases upward.
+	/// Z increases inward. (As in, into the screen / away from you.)
+	/// </summary>
 	public struct Vector3F {
 
 		public static readonly Vector3F Default = new Vector3F(0, 0, 0);
@@ -23,6 +29,13 @@
 			this.x = x;
 			this.y = y;
 			this.z = z;
+		}
+
+		public Vector3F(params float[] val) {
+			if (val.Length != 3) { throw new ArgumentException("Vector3F() given array of more or less than 3 floats"); }
+			x = val[0];
+			y = val[1];
+			z = val[2];
 		}
 
 		/// <summary>
@@ -188,12 +201,12 @@
 			return new Vector3<float>(vec.x, vec.y, vec.z);
 		}
 
-		public static implicit operator Vector3F(Vector3<float> vec) {
-			return new Vector3F(vec.X, vec.Y, vec.Z);
-		}
-
 		public static explicit operator float[](Vector3F vec) {
 			return new [] {vec.x, vec.y, vec.z};
+		}
+
+		public static implicit operator Vector3F(float[] val) {
+			return new Vector3F(val);
 		}
 
 	}

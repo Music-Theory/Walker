@@ -5,7 +5,7 @@ namespace Walker.Data.Geometry.Speed.Space {
 	public struct FaceF {
 
 		public readonly int a, b, c;
-		public readonly SolidF solid;
+		public readonly PolyhedronF solid;
 
 		public Vector3F A => solid[a];
 		public Vector3F B => solid[b];
@@ -19,7 +19,7 @@ namespace Walker.Data.Geometry.Speed.Space {
 
 		public EdgeF[] Edges => new[] {AB, BC, CA};
 
-		public FaceF(SolidF s, int a, int b, int c) {
+		public FaceF(PolyhedronF s, int a, int b, int c) {
 			this.solid = s;
 			this.a = a;
 			this.b = b;

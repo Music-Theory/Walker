@@ -6,7 +6,7 @@
 	/// <summary>
 	/// A 3D solid defined with floats. Uses CCW winding. Please don't make anything concave.
 	/// </summary>
-	public class PolyhedronF : SolidF {
+	public class PolyhedronF{
 
 		readonly Vector3F[] verts;
 
@@ -61,7 +61,7 @@
 			throw new NotImplementedException();
 		}
 
-		public List<Vector3F> Intersections(SolidF sol) {
+		public List<Vector3F> Intersections(PolyhedronF sol) {
 			List<Vector3F> res = new List<Vector3F>();
 			foreach (Line3F edge in Edges) {
 				res.AddRange(edge.Intersections(sol));
@@ -70,10 +70,8 @@
 		}
 
 		public override bool Equals(object obj) {
-			return obj is SolidF s && verts.SequenceEqual(s.Vertices) && faces.SequenceEqual(s.Faces);
+			return obj is PolyhedronF s && verts.SequenceEqual(s.Vertices) && faces.SequenceEqual(s.Faces);
 		}
-
-		protected bool Equals(PolyhedronF other) => Equals(verts, other.verts) && Equals(faces, other.faces);
 
 		public override int GetHashCode() {
 			unchecked {

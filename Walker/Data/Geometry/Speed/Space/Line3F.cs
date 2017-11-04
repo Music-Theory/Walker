@@ -70,7 +70,7 @@
 		/// </summary>
 		/// <param name="sol">The solid to test against</param>
 		/// <returns>All intersections with the solid</returns>
-		public List<Vector3F> Intersections(SolidF sol) {
+		public List<Vector3F> Intersections(PolyhedronF sol) {
 			List<Vector3F> res = new List<Vector3F>();
 			foreach (FaceF face in sol.Faces) {
 				try { res.Add(Intersection(face)); }
@@ -84,10 +84,10 @@
 		/// </summary>
 		/// <param name="sols">The solids to test against.</param>
 		/// <returns>All intersections with the solids, paired with the corresponding solid.</returns>
-		public List<Tuple<SolidF, List<Vector3F>>> Intersections(IEnumerable<SolidF> sols) {
-			List<Tuple<SolidF, List<Vector3F>>> res = new List<Tuple<SolidF, List<Vector3F>>>();
-			foreach (SolidF sol in sols) {
-				res.Add(new Tuple<SolidF, List<Vector3F>>(sol, Intersections(sol)));
+		public List<Tuple<PolyhedronF, List<Vector3F>>> Intersections(IEnumerable<PolyhedronF> sols) {
+			List<Tuple<PolyhedronF, List<Vector3F>>> res = new List<Tuple<PolyhedronF, List<Vector3F>>>();
+			foreach (PolyhedronF sol in sols) {
+				res.Add(new Tuple<PolyhedronF, List<Vector3F>>(sol, Intersections(sol)));
 			}
 			return res;
 		}

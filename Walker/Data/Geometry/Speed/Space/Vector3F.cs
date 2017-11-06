@@ -11,7 +11,8 @@
 	/// </summary>
 	public struct Vector3F {
 
-		public static readonly Vector3F Default = new Vector3F(0, 0, 0);
+		public static readonly Vector3F Zero = new Vector3F(0, 0, 0);
+		public static readonly Vector3F UnitScale = new Vector3F(1, 1, 1);
 
 		public float x, y, z;
 

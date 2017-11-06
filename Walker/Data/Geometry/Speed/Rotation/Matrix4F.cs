@@ -4,6 +4,16 @@
 
 	public struct Matrix4F {
 
+		public static readonly Matrix4F Identity = new Matrix4F(1, 0, 0, 0,
+		                                                        0, 1, 0, 0,
+		                                                        0, 0, 1, 0,
+		                                                        0, 0, 0, 1);
+
+		public static readonly Matrix4F Zero = new Matrix4F(0, 0, 0, 0,
+		                                                    0, 0, 0, 0,
+		                                                    0, 0, 0, 0,
+		                                                    0, 0, 0, 0);
+
 		// If you want to make the calculations lazy, use a bool[3,3]
 		// and stuff like HasChanged, RowChanged(int), ColumnChanged(int)
 

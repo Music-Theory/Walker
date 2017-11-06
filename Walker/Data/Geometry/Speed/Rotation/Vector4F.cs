@@ -5,7 +5,8 @@
 
 	public struct Vector4F {
 
-		public static readonly Vector4F Default = new Vector4F(0, 0, 0, 0);
+		public static readonly Vector4F Zero = new Vector4F(0, 0, 0, 0);
+		public static readonly Vector4F QIdentity = new Vector4F(1, 0, 0, 0);
 
 		public float x, y, z, w;
 
@@ -58,6 +59,13 @@
 			this.y = y;
 			this.z = z;
 			this.w = w;
+		}
+
+		public Vector4F(float x, Vector3F yzw) {
+			this.x = x;
+			this.y = yzw.x;
+			this.z = yzw.y;
+			this.w = yzw.z;
 		}
 
 		/// <summary>

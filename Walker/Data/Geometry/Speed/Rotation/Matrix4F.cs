@@ -239,5 +239,39 @@
 			return a * b.Inverse;
 		}
 
+		public static Matrix4F CreateTranslation(Vector3F pos) => new Matrix4F(1, 0, 0, pos.x,
+		                                                                       0, 1, 0, pos.y,
+		                                                                       0, 0, 1, pos.z,
+		                                                                       0, 0, 0, 1);
+
+		public static Matrix4F CreateScaling(Vector3F sca) => new Matrix4F(sca.x, 0, 0, 0,
+		                                                                   0, sca.y, 0, 0,
+		                                                                   0, 0, sca.z, 0,
+		                                                                   0, 0,     0, 1);
+
+		public static Matrix4F LookAt(Vector3F camPos, Vector3F target, Vector3F up) {
+			Vector3F z = (camPos - target).Normalize();
+			Vector3F x = up.Cross(z).Normalize();
+			Vector3F y = z.Cross(x);
+
+			Matrix4F o = new Matrix4F(x.x, x.y, x.z, 0,
+			                          y.x, y.y, y.z, 0,
+			                          z.x, z.y, z.z, 0,
+			                            0,   0,   0, 1);
+
+			return o * CreateTranslation(-camPos);
+		}
+
+		/// <summary>
+		/// Makes a projection matrix
+		/// </summary>
+		/// <param name="vFOV">Vertical FOV</param>
+		/// <param name="aR">Aspect Ration</param>
+		/// <param name="near">Near Clipping Plane</param>
+		/// <param name="far">Far Clipping Plane</param>
+		/// <returns>A projection matrix</returns>
+		public static Matrix4F CreatePerspectiveFieldOfView(float vFOV, float aR, float near, float far) {
+
+		}
 	}
 }

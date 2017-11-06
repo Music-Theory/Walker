@@ -13,6 +13,10 @@
 
 		public static readonly Vector3F Zero = new Vector3F(0, 0, 0);
 		public static readonly Vector3F UnitScale = new Vector3F(1, 1, 1);
+		public static readonly Vector3F Right = new Vector3F(1, 0, 0);
+		public static readonly Vector3F Up = new Vector3F(0, 1, 0);
+		public static readonly Vector3F Down = -Up;
+		public static readonly Vector3F Left = -Right;
 
 		public float x, y, z;
 
@@ -38,6 +42,8 @@
 			y = val[1];
 			z = val[2];
 		}
+
+		public Vector3F Normalize() => new Vector3F(x, y, z) {Length = 1};
 
 		/// <summary>
 		/// Gets the dot product of two vectors

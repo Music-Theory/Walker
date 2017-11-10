@@ -43,7 +43,7 @@
 			z = val[2];
 		}
 
-		public Vector3F Normalize() => new Vector3F(x, y, z) {Length = 1};
+		public Vector3F Normal => new Vector3F(x, y, z) {Length = 1};
 
 		/// <summary>
 		/// Gets the dot product of two vectors

@@ -224,7 +224,7 @@
 		}*/
 
 		public static explicit operator float[](Vector4F vec) {
-			return new [] {vec.x, vec.y, vec.z, vec.w};
+			return new[] {vec.x, vec.y, vec.z, vec.w};
 		}
 
 		/// <summary>

@@ -250,8 +250,8 @@
 		                                                                   0, 0,     0, 1);
 
 		public static Matrix4F LookAt(Vector3F camPos, Vector3F target, Vector3F up) {
-			Vector3F z = (camPos - target).Normalize();
-			Vector3F x = up.Cross(z).Normalize();
+			Vector3F z = (camPos - target).Normal;
+			Vector3F x = up.Cross(z).Normal;
 			Vector3F y = z.Cross(x);
 
 			Matrix4F o = new Matrix4F(x.x, x.y, x.z, 0,
@@ -271,7 +271,7 @@
 		/// <param name="far">Far Clipping Plane</param>
 		/// <returns>A projection matrix</returns>
 		public static Matrix4F CreatePerspectiveFieldOfView(float vFOV, float aR, float near, float far) {
-
+			throw new NotImplementedException();
 		}
 	}
 }

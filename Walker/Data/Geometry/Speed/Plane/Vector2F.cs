@@ -18,8 +18,8 @@
 		/// <param name="x">X coordinate</param>
 		/// <param name="y">Y coordinate</param>
 		public Vector2F(float x, float y) {
-			X = x;
-			Y = y;
+			this.x = x;
+			this.y = y;
 		}
 
 		/// <summary>
@@ -28,7 +28,7 @@
 		/// <param name="v">Vector to negate</param>
 		/// <returns>-v</returns>
 		public static Vector2F operator -(Vector2F v) {
-			return new Vector2F(-v.X, -v.Y);
+			return new Vector2F(-v.x, -v.y);
 		}
 
 		/// <summary>
@@ -38,7 +38,7 @@
 		/// <param name="v2">Second vector</param>
 		/// <returns>v1 - v2</returns>
 		public static Vector2F operator -(Vector2F v1, Vector2F v2) {
-			return new Vector2F(v1.X - v2.X, v1.Y - v2.Y);
+			return new Vector2F(v1.x - v2.x, v1.y - v2.y);
 		}
 
 		/// <summary>
@@ -48,7 +48,7 @@
 		/// <param name="v2">Second vector</param>
 		/// <returns>v1 + v2</returns>
 		public static Vector2F operator +(Vector2F v1, Vector2F v2) {
-			return new Vector2F(v1.X + v2.X, v1.Y + v2.Y);
+			return new Vector2F(v1.x + v2.x, v1.y + v2.y);
 		}
 
 		/// <summary>
@@ -59,7 +59,7 @@
 		/// <returns>v * x</returns>
 		////////////////////////////////////////////////////////////
 		public static Vector2F operator *(Vector2F v, float x) {
-			return new Vector2F(v.X * x, v.Y * x);
+			return new Vector2F(v.x * x, v.y * x);
 		}
 
 		/// <summary>
@@ -69,7 +69,7 @@
 		/// <param name="v">Vector</param>
 		/// <returns>x * v</returns>
 		public static Vector2F operator *(float x, Vector2F v) {
-			return new Vector2F(x * v.X, x * v.Y);
+			return new Vector2F(x * v.x, x * v.y);
 		}
 
 		/// <summary>
@@ -79,7 +79,7 @@
 		/// <param name="y">Vector 2</param>
 		/// <returns>x * y</returns>
 		public static Vector2F operator *(Vector2F x, Vector2F y) {
-			return new Vector2F(x.X * y.X, x.Y * y.Y);
+			return new Vector2F(x.x * y.x, x.y * y.y);
 		}
 
 		/// <summary>
@@ -89,7 +89,7 @@
 		/// <param name="x">Scalar value</param>
 		/// <returns>v / x</returns>
 		public static Vector2F operator /(Vector2F v, float x) {
-			return new Vector2F(v.X / x, v.Y / x);
+			return new Vector2F(v.x / x, v.y / x);
 		}
 
 		/// <summary>
@@ -99,7 +99,7 @@
 		/// <param name="y">Vector 2</param>
 		/// <returns>x / y</returns>
 		public static Vector2F operator /(Vector2F x, Vector2F y) {
-			return new Vector2F(x.X / y.X, x.Y / y.Y);
+			return new Vector2F(x.x / y.x, x.y / y.y);
 		}
 
 		/// <summary>
@@ -127,7 +127,7 @@
 		/// </summary>
 		/// <returns>String description of the object</returns>
 		public override string ToString() {
-			return "<" + X + ", " + Y + ">";
+			return "<" + x + ", " + y + ">";
 		}
 
 		/// <summary>
@@ -146,7 +146,7 @@
 		/// <param name="other">Vector to check</param>
 		/// <returns>Vectors are equal</returns>
 		public bool Equals(Vector2F other) {
-			return Math.Abs(X - other.X) < GeoMeta.Tolerance && Math.Abs(Y - other.Y) < GeoMeta.Tolerance;
+			return Math.Abs(x - other.x) < GeoMeta.Tolerance && Math.Abs(y - other.y) < GeoMeta.Tolerance;
 		}
 
 		/// <summary>
@@ -154,14 +154,14 @@
 		/// </summary>
 		/// <returns>Integer description of the object</returns>
 		public override int GetHashCode() {
-			return X.GetHashCode() ^
-			       Y.GetHashCode();
+			return x.GetHashCode() ^
+			       y.GetHashCode();
 		}
 
 		/// <summary>X (horizontal) component of the vector</summary>
-		public float X;
+		public float x;
 
 		/// <summary>Y (vertical) component of the vector</summary>
-		public float Y;
+		public float y;
 	}
 }

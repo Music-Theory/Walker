@@ -1,6 +1,7 @@
 ﻿namespace Walker.Data.Geometry.Speed.Space {
 	using System;
 	using System.Diagnostics.CodeAnalysis;
+	using System.Runtime.InteropServices;
 	using Generic.Space;
 
 	/// <summary>
@@ -9,6 +10,7 @@
 	/// Y increases upward.
 	/// Z increases inward. (As in, into the screen / away from you.)
 	/// </summary>
+	[StructLayout(LayoutKind.Sequential)]
 	public struct Vector3F {
 
 		public static readonly Vector3F Zero = new Vector3F(0, 0, 0);
